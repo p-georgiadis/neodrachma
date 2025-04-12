@@ -491,7 +491,7 @@ img {
 
 .security-stamp {
   position: absolute;
-  top: 0px;
+  top: -15px;
   right: -25px;               /* Adjust so it isn’t pushed out */
   z-index: 10;            /* Ensure it stacks above the overlay */
   background-color: var(--primary-color);
@@ -516,13 +516,15 @@ img {
 
 .file-stamp {
   position: absolute;
-  top: 0;
+  top: -15px; /* Move it up from its original position */
   right: 0;
   background-color: var(--warning-red);
   color: white;
   padding: var(--spacing-xs) var(--spacing-sm);
   font-family: var(--font-heading);
   font-size: 0.7rem;
+  z-index: 10; /* Ensure it's above other elements */
+  transform: rotate(-5deg); /* Add slight rotation for style */
 }
 
 .alias {
@@ -1484,6 +1486,22 @@ img {
     max-width: 100%;
     width: 100%;
     margin-bottom: var(--spacing-md);
+  }
+  
+  /* Security stamp mobile adjustments */
+  .security-stamp {
+    top: -20px;
+    right: -15px;
+    font-size: 0.55rem;
+    padding: 3px 5px;
+  }
+  
+  /* Additional adjustments for file-stamp on mobile */
+  .file-stamp {
+    top: -20px;
+    right: 5px;
+    font-size: 0.65rem;
+    padding: 3px 5px;
   }
   
   .dossier {
