@@ -1,21 +1,32 @@
 // neo-drachma-vite/src/components/RetroTerminal.jsx
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from '../contexts/LanguageContext.jsx';
+import { getText } from '../translations';
+
 
 export default function RetroTerminal() {
+    const { language } = useLanguage();
     const [text, setText] = useState('');
-    const messages = [
-        "INITIALIZING NEODRACHMA PROTOCOL...",
-        "SCANNING EURO VULNERABILITIES...",
-        "GREEK ECONOMY ANALYSIS COMPLETE",
-        "SOLUTION FOUND: NEODRACHMA IMPLEMENTATION",
-        "CITIZENS: PREPARE FOR ECONOMIC FREEDOM"
+    
+    // Get translated messages based on current language
+    const getMessages = () => [
+        getText(language, 'terminal', 'initializing'),
+        getText(language, 'terminal', 'scanning'),
+        getText(language, 'terminal', 'analysis'),
+        getText(language, 'terminal', 'solution'),
+        getText(language, 'terminal', 'prepare')
     ];
+    
 
     useEffect(() => {
         let currentIndex = 0;
         let charIndex = 0;
         let typewriterTimerId = null;
+        const messages = getMessages();
 
+        // Reset text when language changes
+        setText('');
+        
         const typeWriter = () => {
             if (currentIndex < messages.length) {
                 if (charIndex < messages[currentIndex].length) {
@@ -38,12 +49,12 @@ export default function RetroTerminal() {
                 clearTimeout(typewriterTimerId);
             }
         };
-    }, []);
+    }, [language]); // Include language as dependency to restart effect when language changes
 
     return (
         <div className="purchase-terminal">
             <div className="terminal-header">
-                <div className="terminal-title">NEODRACHMA CENTRAL COMMAND</div>
+                <div className="terminal-title">{getText(language, 'terminal', 'neodrachmaCommand')}</div>
                 <div className="terminal-controls" aria-hidden="true">
                     <span className="control"></span>
                     <span className="control"></span>
@@ -57,13 +68,13 @@ export default function RetroTerminal() {
             <div className="terminal-options">
                 <div className="terminal-option" role="button" tabIndex="0">
                     <span className="option-number">01</span>
-                    <span className="option-text">INITIATE FINANCIAL FREEDOM</span>
+                    <span className="option-text">{getText(language, 'terminal', 'financial')}</span>
                 </div>
                 <div className="terminal-option" role="button" tabIndex="0">
                     <span className="option-number">02</span>
-                    <span className="option-text">OVERTHROW EURO DEPENDENCY</span>
+                    <span className="option-text">{getText(language, 'terminal', 'euro')}</span>
                 </div>
-                <button className="terminal-btn">EXECUTE PROTOCOL</button>
+                <button className="terminal-btn">{getText(language, 'terminal', 'execute')}</button>
             </div>
         </div>
     );

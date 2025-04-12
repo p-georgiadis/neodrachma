@@ -1,40 +1,44 @@
 // neo-drachma-vite/src/components/IntelligenceFAQ.jsx
 import React, { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext.jsx';
+import { getText } from '../translations';
+
 
 export default function IntelligenceFAQ() {
     const [activeIndex, setActiveIndex] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+    const { language } = useLanguage();
 
     const faqs = [
         {
-            question: "Is NeoDrachma legal under Greek and EU law?",
-            answer: "NeoDrachma operates as a utility token and complies with all relevant regulations...",
-            category: "LEGAL"
+            question: getText(language, 'faq', 'q1'),
+            answer: getText(language, 'faq', 'a1'),
+            category: getText(language, 'faq', 'legal')
         },
         {
-            question: "How is NeoDrachma different from other cryptocurrencies?",
-            answer: "Unlike global cryptocurrencies, NeoDrachma is specifically designed for the Greek context...",
-            category: "TECHNICAL"
+            question: getText(language, 'faq', 'q2'),
+            answer: getText(language, 'faq', 'a2'),
+            category: getText(language, 'faq', 'technical')
         },
         {
-            question: "How can Greek citizens acquire NeoDrachma?",
-            answer: "NeoDrachma will be available through multiple channels designed for maximum accessibility...",
-            category: "PRACTICAL"
+            question: getText(language, 'faq', 'q3'),
+            answer: getText(language, 'faq', 'a3'),
+            category: getText(language, 'faq', 'practical')
         },
         {
-            question: "Is NeoDrachma a good investment opportunity?",
-            answer: "NeoDrachma is designed as a utility token for the Greek economy, not primarily as a speculative...",
-            category: "ECONOMIC"
+            question: getText(language, 'faq', 'q4'),
+            answer: getText(language, 'faq', 'a4'),
+            category: getText(language, 'faq', 'economic')
         },
         {
-            question: "How will NeoDrachma benefit average Greek citizens?",
-            answer: "NeoDrachma provides several immediate benefits: reduced transaction fees...",
-            category: "PRACTICAL"
+            question: getText(language, 'faq', 'q5'),
+            answer: getText(language, 'faq', 'a5'),
+            category: getText(language, 'faq', 'practical')
         },
         {
-            question: "What technology underpins the NeoDrachma system?",
-            answer: "NeoDrachma is built on an energy-efficient blockchain specifically optimized for the Mediterranean region...",
-            category: "TECHNICAL"
+            question: getText(language, 'faq', 'q6'),
+            answer: getText(language, 'faq', 'a6'),
+            category: getText(language, 'faq', 'technical')
         }
     ];
 
@@ -57,9 +61,9 @@ export default function IntelligenceFAQ() {
     return (
         <section id="faq" className="section americana-section intel-section">
             <div className="section-header">
-                <div className="classified-header">TOP SECRET</div>
-                <h2 className="atomic-title">INTELLIGENCE BRIEFING</h2>
-                <div className="subtitle-bar">CITIZEN INFORMATION PROTOCOL</div>
+                <div className="classified-header">{getText(language, 'faq', 'topSecret')}</div>
+                <h2 className="atomic-title">{getText(language, 'faq', 'intelligence')}</h2>
+                <div className="subtitle-bar">{getText(language, 'faq', 'protocol')}</div>
             </div>
 
             <div className="intel-search">
@@ -67,7 +71,7 @@ export default function IntelligenceFAQ() {
                     <span className="search-icon" aria-hidden="true">⌕</span>
                     <input
                         type="text"
-                        placeholder="SEARCH INTELLIGENCE DATABASE..."
+                        placeholder={getText(language, 'faq', 'search')}
                         className="search-input"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -85,7 +89,8 @@ export default function IntelligenceFAQ() {
                 </div>
 
                 <div className="category-filters" role="radiogroup" aria-label="Filter by category">
-                    {["LEGAL", "TECHNICAL", "PRACTICAL", "ECONOMIC"].map(category => (
+                    {[getText(language, 'faq', 'legal'), getText(language, 'faq', 'technical'), 
+                      getText(language, 'faq', 'practical'), getText(language, 'faq', 'economic')].map(category => (
                         <span
                             key={category}
                             className={`category-tag ${searchTerm === category ? 'active' : ''}`}
@@ -131,8 +136,8 @@ export default function IntelligenceFAQ() {
                 ) : (
                     <div className="no-results" role="alert">
                         <div className="no-results-icon" aria-hidden="true">!</div>
-                        <div className="no-results-text">NO INTELLIGENCE RECORDS FOUND</div>
-                        <div className="no-results-subtext">Adjust search parameters or contact your sector commander</div>
+                        <div className="no-results-text">{getText(language, 'faq', 'noResults')}</div>
+                        <div className="no-results-subtext">{getText(language, 'faq', 'adjustSearch')}</div>
                     </div>
                 )}
             </div>

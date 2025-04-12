@@ -1,40 +1,43 @@
 // neo-drachma-vite/src/components/MascotProfile.jsx
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext.jsx';
+import { getText } from '../translations';
+
 
 export default function MascotProfile() {
+    const { language } = useLanguage();
+    
     return (
         <section className="mascot-profile americana-profile">
             <div className="container">
                 <div className="vintage-card">
                     {/* Row that contains both mugshot and dossier */}
-                    <div className="info-row">
+                    <div className="info-row" aria-label="Mascot profile information">
                         <div className="mugshot">
                             <img
                                 src="/images/neodrachma_hero.png"
                                 alt="Leon Damaris - The Defender of the Drachma"
                             />
-                            <div className="security-stamp">CLEARANCE LEVEL: ΑΛΦΑ</div>
+                            <div className="security-stamp">{getText(language, 'mascot', 'clearanceLevel')}</div>
                             <div className="classified-overlay" aria-hidden="true"></div>
                         </div>
                         <div className="dossier">
-                            <h2 className="codename">CODEX: NEO-300</h2>
-                            <div className="file-stamp">RESTRICTED</div>
+                            <h2 className="codename">{getText(language, 'mascot', 'codex')}</h2>
+                            <div className="file-stamp">{getText(language, 'mascot', 'restricted')}</div>
                             <h3 className="alias">
-                                LEON 'NEO' DAMARIS <br />
-                                "The Defender of the Drachma"
+                                {getText(language, 'mascot', 'name')} <br />
+                                "{getText(language, 'mascot', 'title')}"
                             </h3>
                             <div className="typewriter-text">
-                                <p className="classification">[CLASSIFIED PROFILE]</p>
+                                <p className="classification">{getText(language, 'mascot', 'classifiedProfile')}</p>
                                 <p>
-                                    Born in the shadow of the Acropolis, son of a history teacher and grocer.
-                                    Witnessed family struggles during Greek debt crisis. Now leads the charge for
-                                    economic sovereignty through NeoDrachma.
+                                    {getText(language, 'mascot', 'bio')}
                                 </p>
-                                <p>Subject exhibits:</p>
+                                <p>{getText(language, 'mascot', 'traits')}</p>
                                 <ul className="traits">
-                                    <li>Δυναμισμός (Dynamic Vision)</li>
-                                    <li>Παιδεία (Scholarly Resolve)</li>
-                                    <li>Πατριωτισμός (Patriotic Fervor)</li>
+                                    <li>{getText(language, 'mascot', 'trait1')}</li>
+                                    <li>{getText(language, 'mascot', 'trait2')}</li>
+                                    <li>{getText(language, 'mascot', 'trait3')}</li>
                                 </ul>
                             </div>
                         </div>
@@ -43,10 +46,9 @@ export default function MascotProfile() {
                     <div className="mission-statement-container">
                         <div className="mission-statement">
                             <p>
-                                "The old Drachma was stolen from us - not just the coin, but the pride behind it.
-                                NeoDrachma is not a step back. It's a leap forward - on our own terms."
+                                {getText(language, 'mascot', 'quote')}
                             </p>
-                            <div className="signature">- Leon Damaris</div>
+                            <div className="signature">{getText(language, 'mascot', 'signature')}</div>
                         </div>
                     </div>
                 </div>
